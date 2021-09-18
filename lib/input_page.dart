@@ -8,6 +8,8 @@ const activeCardColor = Color(0xFF1D1E33),
     inactiveCardColor = Color(0xFF111328),
     bottomContainerColor = Color(0xFFEB1555);
 
+enum Gender { male, female }
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -16,25 +18,24 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Color? maleCardColor = inactiveCardColor, femaleCardColor = inactiveCardColor;
 
-  void updateColor(int gender) {
-    switch (gender) {
-      // Male card pressed
-      case 1:
-        if (maleCardColor == inactiveCardColor) {
-          maleCardColor = activeCardColor;
-          femaleCardColor = inactiveCardColor;
-        } else {
-          maleCardColor = inactiveCardColor;
-        }
-        break;
-      // Female card pressed
-      case 2:
-        if (femaleCardColor == inactiveCardColor) {
-          femaleCardColor = activeCardColor;
-          maleCardColor = inactiveCardColor;
-        } else {
-          femaleCardColor = inactiveCardColor;
-        }
+  void updateColor(Gender selectedGender) {
+    // Male card pressed
+    if (selectedGender == Gender.male) {
+      if (maleCardColor == inactiveCardColor) {
+        maleCardColor = activeCardColor;
+        femaleCardColor = inactiveCardColor;
+      } else {
+        maleCardColor = inactiveCardColor;
+      }
+    }
+    // Female card pressed
+    else if (selectedGender == Gender.female) {
+      if (femaleCardColor == inactiveCardColor) {
+        femaleCardColor = activeCardColor;
+        maleCardColor = inactiveCardColor;
+      } else {
+        femaleCardColor = inactiveCardColor;
+      }
     }
   }
 
@@ -53,7 +54,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(1);
+                        updateColor(Gender.male);
                       });
                     },
                     child: Reuseable(
@@ -69,7 +70,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(2);
+                        updateColor(Gender.female);
                       });
                     },
                     child: Reuseable(
