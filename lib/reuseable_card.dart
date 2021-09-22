@@ -1,5 +1,5 @@
-import 'package:bmi_calculator/input_page.dart';
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/constants.dart';
 
 class Reuseable extends StatelessWidget {
   Reuseable({this.color = activeCardColor, this.cardChild, this.onPress});
